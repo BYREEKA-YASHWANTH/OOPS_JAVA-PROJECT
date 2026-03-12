@@ -1,0 +1,46 @@
+private static String layout (String title, String main, String toast) {
+        StringBuilder sb = new StringBuilder ();
+        sb.append("<!DOCTYPE html><html lang=\"en\"><head>")
+                .append("<meta charset=\"UTF-8\"/>")
+                .append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>")
+                .append("<title>").append(escape(title)).append("</title>")
+                .append("<style>")
+                .append(":root {--ink: #0f172a; --muted: #475569; --bg: #0b1020; --card: #0f172a; --accent: #22c55e; --accent2: #3b82f6; --ring: #f59e0b;}")
+                .append("*{box-sizing: border-box; font-family: Inter, system-Ui, Segoe UI, Roboto, Arial, sans-serif}")
+                .append("body {margin:0; background: linear-gradient (135deg, #0b1020 0%, #111827 100%); color: #e5e7eb;}")
+                .append("header {padding:18px 20px; border-bottom:1px solid #1f2937; display: flex; align-items: center; gap:12px;}")
+                .append("header .flag{display: flex; gap:3px}.flag span {width:18px; height:12px; display: inline-block}")
+                .append(".flag .saffron{background: #FF9933}.flag .white{background: #fff}.flag .green{background: #138808}")
+                .append(".chakra{width:12px; height:12px; border:1.2px solid #000; border-radius:50%; display: inline-block; margin-left:-15px}")
+                .append("h1{font-size:20px; margin:0}")
+                .append(".wrap{max-width:1000px; margin:24px auto; padding:0 16px;}")
+                .append(".card{background: #0f172a; border:1px solid #1f2937; border-radius:16px; padding:18px; box-shadow:0 10px 30px rgba (0,0,0,.2)}")
+                .append(".grid{display: grid; grid-template-columns: repeat (2, minmax(0,1fr)); gap:12px}")
+                .append("label {display: flex; flex-direction: column; gap:6px; font-size:14px; color: #cbd5e1}")
+                .append("input, select {background: #0b1222; border:1px solid #1f2937; color: #e5e7eb; padding:10px 12px; border-radius:10px; outline: none}")
+                .append("input: focus, select: focus {border-color: var (--accent2); box-shadow:0 0 0 3px rgba (59,130,246,.15)}")
+                .append("button {margin-top:6px; background: linear-gradient (90deg, var (--accent), var (--accent2)); border: none; color: white; padding:12px 16px; border-radius:12px; font-weight:600; cursor: pointer}")
+                .append(".table-wrap {overflow: auto; margin-top:10px}")
+                .append("table {width:100%; border-collapse: collapse}")
+                .append("th, td {border-bottom:1px solid #1f2937; padding:10px 8px; text-align: left; font-size:14px; vertical-align: top}")
+                .append("th {color: #93c5fd}")
+                .append("footer {opacity:.7; padding:30px 0; text-align: center; font-size:12px}")
+                .append(".toast {background: #052e16; border:1px solid #14532d; padding:10px; border-radius:10px; margin:12px 0}")
+                .append("</style>")
+                .append("</head><body>")
+                .append("<header>")
+                .append("<div class=\"flag\"><span class=\"saffron\"></span><span class=\"white\"></span><span class=\"green\"></span></div>")
+                .append("<span class=\"chakra\"></span>")
+                .append("<h1>Government Schemes Recommendation API</h1>")
+                .append("</header>")
+                .append("<div class=\"wrap\">");
+        if (toast != null) {
+            sb.append("<div class='toast'>").append(escape(toast)).append("</div>");
+        }
+        sb.append(main)
+                .append("</div>")
+                .append("<footer>© ").append(Calendar.getInstance().get(Calendar.YEAR))
+                .append(" · Single-file Java demo · API-first & OOP</footer>")
+                .append("</body></html>");
+        return sb.toString();
+}
