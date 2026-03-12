@@ -1,0 +1,34 @@
+private static String resultsTable (UserProfile p, List<RecommenderService.Scored> recs) {
+        StringBuilder sb = new StringBuilder ();
+        sb.append("<div class='card'>")
+                .append("<h2>Results</h2>")
+                .append("<p><b>Profile:</b> age ").append(p.age)
+                .append(", income ₹").append(formatMoney(p.income))
+                .append(", occupation ").append(escape(p.occupation.isEmpty() ? "-”: p.occupation))
+                .append(", category ").append(escape(p.category.isEmpty() ? "-”: p.category))
+                .append(", location ").append(escape(p.location.isEmpty() ? "-”: p.location))
+                .append("</p>");
+        if (recs == null || recs.isEmpty()) {
+            sb.append("<p>No matching schemes were found. Try adjusting inputs.</p></div>");
+            return sb.toString();
+        }
+        sb.append("<div class='table-wrap'><table><thead><tr>")
+.append("<th>#</th><th>Scheme</th><th>Ministry</th><th>Summary</th><th>Benefits</th><th>Score</th><th>Link</th>")
+                .append("</tr></thead><tbody>");
+        int i = 1;
+        for (RecommenderService.Scored s : recs) {
+            Scheme sc = s.scheme;
+            sb.append("<tr>")
+                    .append("<td>").append(i++).append("</td>")
+                    .append("<td>").append(escape(sc.name)).append("</td>")
+                    .append("<td>").append(escape(sc.ministry)).append("</td>")
+                    .append("<td>").append(escape(sc.summary)).append("</td>")
+                    .append("<td>").append(escape(sc.benefits)).append("</td>")
+                    .append("<td>").append(s.score).append("</td>")
+                    .append("<td><a target=\"_blank\" href=\"").append(escape(sc.link)).append("\">Open</a></td>")
+                    .append("</tr>");
+        }
+        sb.append("</tbody></table></div></div>");
+        sb.append("<p style='opacity:.7'>Tip: The score reflects how many rule checks you satisfied (higher is better).</p>");
+        return sb.toString();
+}
