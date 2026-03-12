@@ -1,0 +1,22 @@
+private static String adminFormPage () {
+        StringBuilder sb = new StringBuilder ();
+        sb.append("<div class='card'>")
+                .append("<h2>Add New Scheme (Admin)</h2>")
+                .append("<form method='POST' action='/admin/add' class='grid'>")
+                // Admin password field
+                .append("<label>Admin Password <input name='adminPassword' type='password' required></label>")
+                // Scheme basic details
+                .append("<label>Scheme Name <input name='name' required></label>")
+                .append("<label>Description / Summary <textarea name='summary' rows='2'></textarea></label>")
+                // Eligibility fields
+                .append("<label>Minimum Age <input name='minAge' type='number' min='0' required></label>")
+                .append("<label>Maximum Age <input name='maxAge' type='number' min='0' required></label>")
+                .append("<label>Maximum Income (₹) <input name='incomeMax' type='number' min='0' step='0.01'></label>")
+                .append("<label>Occupation <input name='occupation'></label>")
+                .append("<label>Category / Caste <input name='category'></label>")
+                .append("<label>Location (State) <input name='location' placeholder='e.g., Telangana'></label>")
+                .append("<button type='submit'>Add Scheme</button>")
+                .append("</form>")
+                .append("<p style='margin-top:10px'><a href='/'>← Back to main page</a></p>")
+                .append("</div>"); return sb.toString();
+}
